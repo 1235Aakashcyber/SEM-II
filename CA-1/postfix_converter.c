@@ -1,5 +1,7 @@
+// This program converts the infix equation to postfix form using stacks
+
 #include <stdio.h>
-#include <ctype.h>
+#include <ctype.h> //To use isalnum function
 #define max 20
 
 int top = -1;
@@ -8,7 +10,7 @@ char stack[max];
 void push(char value);
 char pop();
 int priority(char input);
-char isoperator(char c);
+int isoperator(char c);
 
 int main() {
     char input[50];
@@ -37,23 +39,26 @@ int main() {
     return 0;
 }
 
+//push definition
 void push(char value) {
     if (top == (max - 1)) {
-        printf("Stack overflow\n");
+        printf("Overflow\n");
         return;
     }
     top++;
     stack[top] = value;
 }
 
+//pop definition
 char pop() {
     if (top == -1) {
-        printf("Stack underflow\n");
+        printf("Underflow\n");
         return '\0';
     }
     return stack[top--];
 }
 
+//priority definition
 int priority(char input) {
     if (input == '(' || input == ')') {
         return 0;
@@ -67,6 +72,7 @@ int priority(char input) {
     return -1; // For invalid characters
 }
 
-char isoperator(char c) {
+//isoperator definition
+int isoperator(char c) {
     return c == '+' || c == '-' || c == '*' || c == '/' || c == '%';
 }
