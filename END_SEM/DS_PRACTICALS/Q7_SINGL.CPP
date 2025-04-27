@@ -73,6 +73,7 @@ return;
 else{
 temp = *head;
 *head = temp -> next;
+temp -> next = NULL;
 free(temp);
 printf("Deletion Successful !\n");
 }
